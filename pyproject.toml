@@ -67,4 +67,4 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.uv.sources]
-miocodec = { git = "https://github.com/sherif1313/Arabic-MioTTS-100M" }
+miotts_inference = { git = "https://github.com/sherif1313/Arabic-MioTTS-100M" }
