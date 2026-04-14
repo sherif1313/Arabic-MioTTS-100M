@@ -1,7 +1,6 @@
 Comprehensive Verification Report
 ==================================================
 
-Generated: 2026-04-13 14:41:06
 Manifest: data/manifests/full_wav_txt_single.json
 Samples Verified: 100
 
