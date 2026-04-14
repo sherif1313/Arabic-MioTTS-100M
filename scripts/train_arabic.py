@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-train_arabic_full_ddp.py - Full Fine-tuning على 2+ GPUs باستخدام DDP
 ✅ يدعم LoRA عبر PEFT
 ✅ يدعم Full Fine-tuning
 ✅ توزيع حقيقي للـ batch عبر الـ GPUs
@@ -168,7 +167,7 @@ def main():
     base_model = base_model.to(device)
 
     # === تطبيق LoRA أو Full Training ===
-    use_lora = train_cfg.get('use_lora', False)
+    use_lora = train_cfg.get('lora_enabled', False) or train_cfg.get('use_lora', False)
     
     if use_lora:
         if rank == 0:
