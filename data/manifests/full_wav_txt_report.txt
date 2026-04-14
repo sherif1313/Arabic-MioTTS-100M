@@ -1,1 +1,18 @@
+Comprehensive Verification Report
+==================================================
 
+Generated: 2026-04-13 14:41:06
+Manifest: data/manifests/full_wav_txt_single.json
+Samples Verified: 100
+
+Results:
+------------------------------
+Audio Exists: 100 (100.0%)
+Text Valid: 100 (100.0%)
+Duration Valid: 100 (100.0%)
+Tokens Valid: 100 (100.0%)
+Re-encode Success: 100 (100.0%)
+Tokens Match: 100 (100.0%)
+
+Errors: 0
+Mismatches: 0
