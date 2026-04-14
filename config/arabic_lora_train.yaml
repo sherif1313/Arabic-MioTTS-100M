@@ -1,50 +1,28 @@
 # === Training Configuration with LoRA ===
-manifest_path: "data/manifests/train_97.json"
-val_manifest_path: "data/manifests/val_03.json"
-
-# مسار النموذج الأساسي (يفضل استخدام آخر Checkpoint أو best_model)
+manifest_path: "data/manifests/train_97.json"  # غير اسم نلف البيانات
+val_manifest_path: "data/manifests/val_03.json" 
 base_model_path: "sherif1313/Arabic-MioTTS-100M" 
-
-output_dir: "checkpoints/arabic_lora_tier2"
-
-# === LoRA Settings ===
+output_dir: "checkpoints/arabic_lora"
 use_lora: true
 lora_r: 128
 lora_alpha: 256
 lora_dropout: 0.1
+# ✅ نستخدم فقط in_proj للأمان
 lora_target_modules:
   - "mamba.in_proj"
-  - "mamba.out_proj"
-  - "feed_forward.gate_proj"
-  - "feed_forward.down_proj"
-  - "feed_forward.up_proj"
-
-# === Training Settings ===
 max_steps: 60000
 save_every: 500
 log_every: 50
-eval_every: 1000
 batch_size: 4
-gradient_accumulation: 16
-enable_gradient_checkpointing: false
-use_cpu_offload: false
-learning_rate: 4e-5
+gradient_accumulation_steps: 16
+learning_rate: 1e-4
 warmup_steps: 1500
 weight_decay: 0.01
 gradient_clip: 1.0
-
-# === Data Settings ===
 codec_path: "Aratako/MioCodec-25Hz-24kHz"
 codec_sample_rate: 24000
 audio_token_min: 70145
 audio_token_max: 82944
 vocab_size: 82945
 max_audio_tokens: 744
-max_position_embeddings: 844
-
-# === DataLoader ===
 num_workers: 2
-pin_memory: true
-persistent_workers: false
-prefetch_factor: 2
-EOF
