@@ -1,19 +1,18 @@
-# === Training Configuration with LoRA ===
-manifest_path: "data/manifests/train_97.json"  # غير اسم نلف البيانات
-val_manifest_path: "data/manifests/val_03.json" 
-# === النموذج الأساسي ===
-base_model_path: "sherif1313/Arabic-MioTTS-100M" 
-manifest_path: "data/manifests/full_wav_txt_single.json"
+# === البيانات ===
+manifest_path: "data/manifests/full_wav_txt_single.json"   # غير اسم ملف البيانات
 valid_ratio: 0.01
 cache_dir: "data/processed"
+
+# === النموذج الأساسي ===
+base_model_path: "sherif1313/Arabic-MioTTS-100M" 
 # === LoRA Configuration ===
 lora_enabled: true
-lora_r: 128              # غيّر إلى 256 لـ قدرة أعلى
-lora_alpha: 256          # = 2 × lora_r
+lora_r: 128
+lora_alpha: 256
 lora_dropout: 0.1
 lora_target_modules:
   - "mamba.in_proj"
-  - "mamba.out_proj"
+  # ✅ تمت إزالة mamba.out_proj لتجنب الخطأ
   - "feed_forward.gate_proj"
   - "feed_forward.down_proj"
   - "feed_forward.up_proj"
@@ -31,6 +30,8 @@ learning_rate: 2e-5
 warmup_steps: 1500
 weight_decay: 0.01
 gradient_clip: 1.0
+
+# === Data Settings ===
 codec_path: "Aratako/MioCodec-25Hz-24kHz"
 codec_sample_rate: 24000
 audio_token_min: 70145
@@ -38,7 +39,12 @@ audio_token_max: 82944
 vocab_size: 82945
 max_audio_tokens: 744
 max_position_embeddings: 844
+
+# === DataLoader ===
 num_workers: 2
+pin_memory: true
+persistent_workers: false
+prefetch_factor: 2
 pin_memory: true
 persistent_workers: false
 prefetch_factor: 2
